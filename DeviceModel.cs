@@ -44,5 +44,4 @@ namespace WifiLocalization
             Property = new PropertyModel(WifiLocalization.Manager.Instance.GetStatistics(this.Property, a, b));
         }
     }
-
 }
