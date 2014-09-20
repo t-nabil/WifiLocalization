@@ -9,7 +9,7 @@ namespace WifiLocalization
     interface IManager
     {
         PropertyModel GetStatistics(PropertyModel property, Double[] original, Double[] predicted);
-        LocationModel GetLocation(DeviceModel user, LocationModel offline);
+        DeviceModel GetLocation(DeviceModel user, LocationModel offline);
         Double[] ReadOfflineDB(string xlPath, int xlSheetNum, string xlRangestring);
         
     }

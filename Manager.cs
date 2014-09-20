@@ -42,16 +42,16 @@ namespace WifiLocalization
             Array Data = WifiLocalization.Implement.Instance.ExcelRead(xlPath, xlSheetNum, xlRangestring);
             return Helper.ObjectToDouble(Data);
         }
-        public LocationModel GetLocation(DeviceModel user, LocationModel offline)
+        public DeviceModel GetLocation(DeviceModel user, LocationModel offline)
         {
             return KNearestNeighbor(user, offline);
             // return WKNearestNeighbor(user, offline);
         }
-        private LocationModel KNearestNeighbor(DeviceModel user, LocationModel offline)
+        private DeviceModel KNearestNeighbor(DeviceModel user, LocationModel offline)
         {
             return WifiLocalization.Implement.Instance.KNearestNeighbor(user,offline);
         }
-        private LocationModel WKNearestNeighbor(DeviceModel user, LocationModel offline)
+        private DeviceModel WKNearestNeighbor(DeviceModel user, LocationModel offline)
         {
             return WifiLocalization.Implement.Instance.WKNearestNeighbor();
         }

@@ -4,3 +4,4 @@ C:\Users\Tarek\documents\visual studio 2013\Projects\WifiLocalization\WifiLocali
 C:\Users\Tarek\documents\visual studio 2013\Projects\WifiLocalization\WifiLocalization\obj\Debug\WifiLocalization.csproj.ResolveComReference.cache
 C:\Users\Tarek\documents\visual studio 2013\Projects\WifiLocalization\WifiLocalization\obj\Debug\WifiLocalization.exe
 C:\Users\Tarek\documents\visual studio 2013\Projects\WifiLocalization\WifiLocalization\obj\Debug\WifiLocalization.pdb
+C:\Users\Tarek\documents\visual studio 2013\Projects\WifiLocalization\WifiLocalization\obj\Debug\WifiLocalization.csprojResolveAssemblyReference.cache

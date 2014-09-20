@@ -38,11 +38,19 @@ namespace WifiLocalization
             User.Property.KNN = 3;
             User.Property.Threshold = 1;
             User.Property.Exponent = 2;
-            User.RSSValue = OfflineMapList[0].RSSValueList[0];
-            _manager.GetLocation(User, OfflineMapList[0]);
+
+            User.RSSValue = new double[OfflineMapList[0].RSSValueList.Count()];
+            for (int i = 0; i < OfflineMapList[0].RSSValueList.Count(); i++)
+            {
+                User.RSSValue[i] = OfflineMapList[0].RSSValueList[i][0];                
+            }
+
+            User.GetLocation(OfflineMapList[0]);
+
             double[] u1 = new double[] { };
             double[] u2 = new double[] { };
-            User.Property = _manager.GetStatistics(User.Property, Helper.Magnitude(u1, u2),
+            
+            User.GetStatistics(Helper.Magnitude(u1, u2),
                 Helper.Magnitude(OfflineMapList[0].XValue, OfflineMapList[0].YValue));
 
             User.DisplayInfo();

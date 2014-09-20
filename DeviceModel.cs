@@ -33,7 +33,16 @@ namespace WifiLocalization
         {
             Console.WriteLine(String.Format("Id={0}, Mac={1}, Name={2}", this.Id, this.Mac, this.Name));
         }
-
+        public void GetLocation(LocationModel model)
+        {
+            var temp = WifiLocalization.Manager.Instance.GetLocation(this, model);
+            XLocation = temp.XLocation;
+            YLocation = temp.YLocation;
+        }
+        public void GetStatistics(Double[] a, Double[] b)
+        {
+            Property = new PropertyModel(WifiLocalization.Manager.Instance.GetStatistics(this.Property, a, b));
+        }
     }
 
 }

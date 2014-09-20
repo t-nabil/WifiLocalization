@@ -52,9 +52,9 @@ namespace WifiLocalization
             }
 
         }
-        public LocationModel KNearestNeighbor(DeviceModel user, LocationModel Offline)
+        public DeviceModel KNearestNeighbor(DeviceModel user, LocationModel Offline)
         {
-            Dictionary<int, Double> dist = new Dictionary<int, double>(); 
+            Dictionary<int, Double> dist = new Dictionary<int, double>();
             List<Double[]> ap = Offline.RSSValueList;
             Double[] us = user.RSSValue;
             int knn = user.Property.KNN;
@@ -64,41 +64,40 @@ namespace WifiLocalization
             int locNum = ap[0].Length;
             double sum;
             double invExp = 1 / (double)exp;
-            Double[] x = new Double[knn];
-            Double[] y = new Double[knn];
-            LocationModel KNNResult = new LocationModel();
+             
 
-            int u = 0;
+
             for (int j = 0; j < locNum; j++)
+            {
+                sum = 0;
+
+                for (int i = 0; i < apNum; i++)
                 {
-                    sum = 0;
-                    
-                    for (int i = 0; i < apNum; i++)
-                    {
-                        sum += Math.Pow(us[i] - ap[i][j], exp);
+                    sum += Math.Pow(us[i] - ap[i][j], exp);
 
-                    }
-
-                    dist.Add(j, Math.Pow(sum, invExp));
                 }
 
-                var results = dist.OrderBy(i => i.Value).Take(knn);
-                int k = 0;
-                 foreach (KeyValuePair<int,double> result in results)
-                {
-                     x[k] = Offline.XValue[result.Key];
-                     y[k] = Offline.YValue[result.Key];
-                     k++;
-                }
-                
+                dist.Add(j, Math.Pow(sum, invExp));
+            }
+
+            var results = dist.OrderBy(i => i.Value).Take(knn);
+
+            double x = 0, y = 0;
+            foreach (KeyValuePair<int, double> result in results)
+            {
+                x += Offline.XValue[result.Key];
+                y += Offline.YValue[result.Key];
+
+            }
             
+            DeviceModel KNNResult = new DeviceModel(user);
 
-//            KNNResult.XValue[k] = Offline.Location.XValue[result.Key];
-//            KNNResult.YValue[k] = Offline.Location.YValue[result.Key];
+            KNNResult.XLocation = x / knn;
+            KNNResult.YLocation = y / knn;
 
             return KNNResult;
         }
-        public LocationModel WKNearestNeighbor() { return null; }
+        public DeviceModel WKNearestNeighbor() { return null; }
         public Array ExcelRead(string xlPath, int xlSheetNum, string xlRangestring)
         {
 
